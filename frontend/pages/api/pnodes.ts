@@ -1,13 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import fetchPnodes from "../../lib/fetchPnodes";
+import { fetchAllPNodeStats } from "../../lib/fetchPnodes";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
-    const base = process.env.PRPC_BASE_URL || "http://localhost:4000";
-    const nodes = await fetchPnodes(base);
+    const nodes = await fetchAllPNodeStats();
     res.status(200).json({ result: nodes });
   } catch (err: any) {
     console.error("pnodes API error:", err);

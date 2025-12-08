@@ -1,28 +1,32 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import PNodeTable from "../../components/PNodeTable";
 import StorageChart from "../../components/StorageChart";
-import type { PNode } from "../../lib/types";
+import type { PNodeStats } from "../../lib/fetchPnodes";
 
-async function getPnodes(): Promise<PNode[]> {
-  const apiPath = "/api/pnodes";
+export default function DashboardPage() {
+  const [nodes, setNodes] = useState<PNodeStats[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // On the server, fetch requires an absolute URL. Build one from env or default to localhost:3000.
-  const isServer = typeof window === "undefined";
-  const baseHost = isServer
-    ? process.env.NEXT_PUBLIC_API_BASE ||
-      `http://localhost:${process.env.PORT ?? 3000}`
-    : "";
-
-  const url = baseHost.replace(/\/$/, "") + apiPath;
-
-  const res = await fetch(url);
-  if (!res.ok) throw new Error("Failed to fetch pnodes");
-  const json = await res.json();
-  return json.result as PNode[];
-}
-
-export default async function DashboardPage() {
-  const nodes = await getPnodes();
+  useEffect(() => {
+    async function fetchNodes() {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await fetch("/api/pnodes");
+        if (!res.ok) throw new Error("Failed to fetch pnodes");
+        const json = await res.json();
+        setNodes(json.result);
+      } catch (err: any) {
+        setError(String(err?.message ?? err));
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchNodes();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
@@ -35,14 +39,22 @@ export default async function DashboardPage() {
             Real-time monitoring and analytics for Xandeum pNodes
           </p>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2">
-            <PNodeTable nodes={nodes} />
+        {loading ? (
+          <div className="text-center py-12 text-lg text-gray-500">
+            Loading node stats...
           </div>
-          <div className="lg:col-span-1">
-            <StorageChart nodes={nodes} />
+        ) : error ? (
+          <div className="text-center py-12 text-red-500">Error: {error}</div>
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-2">
+              <PNodeTable nodes={nodes} />
+            </div>
+            <div className="lg:col-span-1">
+              <StorageChart nodes={nodes} />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
