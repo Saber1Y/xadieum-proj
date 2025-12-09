@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Xandeum pNode Analytics Dashboard
 
-## Getting Started
+**Author:** Saber. (Xandeum Labs Hackathon Submission)
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## About Xandeum Labs
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Xandeum is building a scalable storage layer for Solana dApps, powered by a network of storage provider nodes called pNodes.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Mission
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Develop an analytics platform for Xandeum pNodes, similar to Solana validator dashboards (stakewiz.com, topvalidators.app, validators.app).
 
-## Learn More
+## Scope
 
-To learn more about Next.js, take a look at the following resources:
+- Web-based analytics platform for Xandeum pNodes
+- Retrieves live pNode stats using public pRPC endpoints (see `lib/pnodePublicIps.ts`)
+- Displays node info: IP, CPU %, RAM, uptime, online status, storage (if available)
+- Modern, responsive, animated UI (Next.js 14, React, Tailwind, Framer Motion)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## How It Works
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- For each public node IP, the dashboard POSTs to `http://<ip>:6000/rpc` with `{ "jsonrpc": "2.0", "method": "get-stats", "id": 1 }`
+- The API route `/api/pnodes` aggregates all node stats and returns them to the frontend
+- The UI updates in real time with live node metrics
 
-## Deploy on Vercel
+## Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Table view: IP, CPU %, RAM, uptime, online/error status
+- Storage chart (using file_size as proxy for used storage)
+- Animated, responsive landing page and dashboard
+- Error handling for offline nodes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## How to Run Locally
+
+1. `cd frontend`
+2. `npm install`
+3. `npm run dev`
+4. Open [http://localhost:3000](http://localhost:3000)
+
+## Submission Requirements
+
+- This repo contains a fully functional, documented platform
+- All code is accessible and ready for review
+- See above for deployment instructions
+
+## Judging Criteria
+
+- **Functionality:** Successfully retrieves and displays pNode info using valid pRPC calls
+- **Clarity:** Information is easy to understand
+- **User Experience:** Intuitive, user-friendly, and visually appealing
+- **Innovation (Optional):** Extra features or unique data presentation
+
+## Credits
+
+- Built by Saber. for Xandeum Labs Hackathon, 2025
+- Uses live public pRPC endpoints provided by the Xandeum team
+- For questions or demo, contact Saber. or join the Xandeum Discord: https://discord.gg/uqRSmmM5m
+
+---
+
+Ready for submission! 🚀
