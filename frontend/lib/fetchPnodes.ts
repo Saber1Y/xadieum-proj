@@ -6,7 +6,7 @@ const defaultRpcBody = {
   jsonrpc: "2.0",
   id: 1,
   method: "pn_getGossipNodes",
-  params: [] as any[],
+  params: [] as unknown[],
 };
 
 export type PNodeStats = {

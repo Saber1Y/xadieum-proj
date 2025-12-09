@@ -19,8 +19,12 @@ export default function DashboardPage() {
         if (!res.ok) throw new Error("Failed to fetch pnodes");
         const json = await res.json();
         setNodes(json.result);
-      } catch (err: any) {
-        setError(String(err?.message ?? err));
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(String(err?.message ?? err));
+        } else {
+          setError("Unknown error");
+        }
       } finally {
         setLoading(false);
       }
