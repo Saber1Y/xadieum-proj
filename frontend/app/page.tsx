@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { ArrowRight, BarChart3, Zap, Shield, Globe } from "lucide-react";
-import { FadeInUp, ScaleIn, StaggerContainer, StaggerItem } from "../components/animations";
+import {
+  FadeInUp,
+  ScaleIn,
+  StaggerContainer,
+  StaggerItem,
+} from "../components/animations";
 
 export default function LandingPage() {
   return (
@@ -9,9 +14,6 @@ export default function LandingPage() {
       <nav className="fixed w-full top-0 z-50 bg-black/20 backdrop-blur-md border-b border-white/10">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">X</span>
-            </div>
             <span className="text-white font-bold text-xl">Xandeum</span>
           </div>
           <div className="hidden md:flex items-center gap-8">
@@ -57,7 +59,7 @@ export default function LandingPage() {
           <FadeInUp delay={0.1}>
             <div className="mb-6 inline-block">
               <span className="px-4 py-2 bg-indigo-500/20 border border-indigo-500/50 rounded-full text-indigo-300 text-sm font-semibold">
-                ✨ Next-Gen Analytics for Decentralized Networks
+                Next-Gen Analytics for Decentralized Networks
               </span>
             </div>
           </FadeInUp>
@@ -74,9 +76,9 @@ export default function LandingPage() {
 
           <FadeInUp delay={0.3}>
             <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Powerful analytics dashboard for Xandeum pNode networks. Track node
-              health, storage capacity, and network performance with intuitive
-              visualizations and real-time data.
+              Powerful analytics dashboard for Xandeum pNode networks. Track
+              node health, storage capacity, and network performance with
+              intuitive visualizations and real-time data.
             </p>
           </FadeInUp>
 
@@ -96,28 +98,6 @@ export default function LandingPage() {
               </a>
             </div>
           </FadeInUp>
-
-          <FadeInUp delay={0.5}>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-12 border-t border-white/10">
-              <StaggerContainer delay={0.6}>
-                {[
-                  { label: "Active Nodes", value: "1,000+" },
-                  { label: "Total Storage", value: "500 PB" },
-                  { label: "Uptime", value: "99.9%" },
-                  { label: "Network Status", value: "Healthy" },
-                ].map((stat, i) => (
-                  <StaggerItem key={i}>
-                    <div className="py-4">
-                      <div className="text-2xl font-bold text-indigo-400">
-                        {stat.value}
-                      </div>
-                      <div className="text-sm text-gray-400">{stat.label}</div>
-                    </div>
-                  </StaggerItem>
-                ))}
-              </StaggerContainer>
-            </div>
-          </FadeInUp>
         </div>
       </section>
 
@@ -129,55 +109,54 @@ export default function LandingPage() {
               Powerful Features
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              Everything you need to monitor and manage your Xandeum pNode network
+              Everything you need to monitor and manage your Xandeum pNode
+              network
             </p>
           </div>
         </FadeInUp>
 
         <StaggerContainer delay={0.2}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 cursor-pointer">
             {[
-            {
-              icon: <BarChart3 size={32} />,
-              title: "Real-Time Analytics",
-              description:
-                "Live dashboard with up-to-date metrics on node performance, storage usage, and network health.",
-            },
-            {
-              icon: <Zap size={32} />,
-              title: "Fast Data Retrieval",
-              description:
-                "Lightning-fast JSON-RPC calls directly to pRPC endpoints for instant network insights.",
-            },
-            {
-              icon: <Shield size={32} />,
-              title: "Secure Monitoring",
-              description:
-                "Enterprise-grade security with encrypted data transmission and secure API endpoints.",
-            },
-            {
-              icon: <Globe size={32} />,
-              title: "Global Network View",
-              description:
-                "Monitor nodes across the entire Xandeum network with geographical and performance filtering.",
-            },
-          ].map((feature, i) => (
-            <StaggerItem key={i}>
-              <ScaleIn delay={i * 0.1}>
-                <div
-                  className="p-8 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-indigo-500/50 transition group"
-                >
-                  <div className="text-indigo-400 mb-4 group-hover:text-indigo-300 transition">
-                    {feature.icon}
+              {
+                icon: <BarChart3 size={32} />,
+                title: "Real-Time Analytics",
+                description:
+                  "Live dashboard with up-to-date metrics on node performance, storage usage, and network health.",
+              },
+              {
+                icon: <Zap size={32} />,
+                title: "Fast Data Retrieval",
+                description:
+                  "Lightning-fast JSON-RPC calls directly to pRPC endpoints for instant network insights.",
+              },
+              {
+                icon: <Shield size={32} />,
+                title: "Secure Monitoring",
+                description:
+                  "Enterprise-grade security with encrypted data transmission and secure API endpoints.",
+              },
+              {
+                icon: <Globe size={32} />,
+                title: "Global Network View",
+                description:
+                  "Monitor nodes across the entire Xandeum network with geographical and performance filtering.",
+              },
+            ].map((feature, i) => (
+              <StaggerItem key={i}>
+                <ScaleIn delay={i * 0.1}>
+                  <div className="p-8 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-indigo-500/50 transition group">
+                    <div className="text-indigo-400 mb-4 group-hover:text-indigo-300 transition">
+                      {feature.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold text-white mb-3">
+                      {feature.title}
+                    </h3>
+                    <p className="text-gray-400">{feature.description}</p>
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-3">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-400">{feature.description}</p>
-                </div>
-              </ScaleIn>
-            </StaggerItem>
-          ))}
+                </ScaleIn>
+              </StaggerItem>
+            ))}
           </div>
         </StaggerContainer>
       </section>
@@ -220,9 +199,9 @@ export default function LandingPage() {
                 <p>
                   The Xandeum pNode Analytics Dashboard is a comprehensive
                   monitoring and analytics platform designed for the Xandeum
-                  decentralized network. Built with cutting-edge web technologies,
-                  it provides real-time insights into pNode performance, network
-                  health, and storage utilization.
+                  decentralized network. Built with cutting-edge web
+                  technologies, it provides real-time insights into pNode
+                  performance, network health, and storage utilization.
                 </p>
               </FadeInUp>
               <FadeInUp delay={0.3}>
@@ -278,12 +257,8 @@ export default function LandingPage() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold">X</span>
-                </div>
-                <span className="text-white font-bold">Xandeum</span>
-              </div>
+              <span className="text-white font-bold">Xandeum</span>
+
               <p className="text-gray-400 text-sm">pNode Analytics Platform</p>
             </div>
             <div>
@@ -297,36 +272,6 @@ export default function LandingPage() {
                 <li>
                   <a href="#features" className="hover:text-white transition">
                     Features
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Resources</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Documentation
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    API Reference
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Community</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    GitHub
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition">
-                    Discord
                   </a>
                 </li>
               </ul>

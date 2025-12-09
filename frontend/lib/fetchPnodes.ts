@@ -35,6 +35,7 @@ export async function fetchPNodeStats(ip: string): Promise<PNodeStats> {
     method: "get-stats",
     id: 1,
   };
+  
   try {
     const res = await fetch(url, {
       method: "POST",
