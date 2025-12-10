@@ -19,12 +19,8 @@ export default function DashboardPage() {
         if (!res.ok) throw new Error("Failed to fetch pnodes");
         const json = await res.json();
         setNodes(json.result);
-      } catch (err: unknown) {
-        if (err instanceof Error) {
-          setError(String(err?.message ?? err));
-        } else {
-          setError("Unknown error");
-        }
+      } catch (err: any) {
+        setError(String(err?.message ?? err));
       } finally {
         setLoading(false);
       }
@@ -33,22 +29,43 @@ export default function DashboardPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <div className="container mx-auto px-6 py-8">
+    <div
+      className="min-h-screen relative"
+      style={{
+        background:
+          "linear-gradient(120deg, #10123e 0%, #10123e 60%, #ffa20a 100%)",
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+          pointerEvents: "none",
+          background:
+            "radial-gradient(circle at 70% 30%, #ffa20a33 0%, #10123e 70%)",
+        }}
+      />
+      <div className="container mx-auto px-6 py-8 relative z-10">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          <h1 className="text-4xl font-bold mb-2" style={{ color: "#fdfffb" }}>
             Xandeum pNode Dashboard
           </h1>
-          <p className="text-gray-600">
+          <p className="text-lg" style={{ color: "#ffa20a" }}>
             Real-time monitoring and analytics for Xandeum pNodes
           </p>
         </div>
         {loading ? (
-          <div className="text-center py-12 text-lg text-gray-500">
+          <div
+            className="text-center py-12 text-lg"
+            style={{ color: "#fdfffb" }}
+          >
             Loading node stats...
           </div>
         ) : error ? (
-          <div className="text-center py-12 text-red-500">Error: {error}</div>
+          <div className="text-center py-12" style={{ color: "#ffa20a" }}>
+            Error: {error}
+          </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2">

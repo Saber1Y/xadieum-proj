@@ -47,10 +47,10 @@ export default function PNodeTable({ nodes }: Props) {
   }, [nodes, query, sortKey, desc]);
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
+    <div className="bg-[#fdfffb] rounded-lg shadow-md p-6 border border-[#10123e]">
       <div className="flex gap-2 mb-4">
         <input
-          className="border border-gray-300 bg-white text-gray-900 p-2 rounded flex-1 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="border border-[#10123e] bg-[#fdfffb] text-[#10123e] p-2 rounded flex-1 focus:outline-none focus:ring-2 focus:ring-[#ffa20a]"
           placeholder="Search IP, CPU, RAM, uptime..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -58,7 +58,7 @@ export default function PNodeTable({ nodes }: Props) {
         <select
           value={sortKey}
           onChange={(e) => setSortKey(e.target.value as any)}
-          className="border border-gray-300 bg-white text-gray-900 p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="border border-[#10123e] bg-[#fdfffb] text-[#10123e] p-2 rounded focus:outline-none focus:ring-2 focus:ring-[#ffa20a]"
         >
           <option value="ip">IP</option>
           <option value="cpu">CPU %</option>
@@ -66,15 +66,15 @@ export default function PNodeTable({ nodes }: Props) {
           <option value="uptime">Uptime</option>
         </select>
         <button
-          className="border border-gray-300 bg-white text-gray-900 px-4 py-2 rounded hover:bg-gray-100 font-medium"
+          className="border border-[#10123e] bg-[#fdfffb] text-[#10123e] px-4 py-2 rounded hover:bg-[#ffa20a] hover:text-[#10123e] transition font-medium"
           onClick={() => setDesc((d) => !d)}
         >
           {desc ? "↓ Desc" : "↑ Asc"}
         </button>
       </div>
       <div className="overflow-auto max-h-[65vh] border border-gray-200 rounded-lg">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-100 sticky top-0">
+        <table className="w-full text-sm text-left">
+          <thead className="bg-[#10123e] text-[#ffa20a]">
             <tr>
               <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                 IP
@@ -93,9 +93,12 @@ export default function PNodeTable({ nodes }: Props) {
               </th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody>
             {filtered.map((n) => (
-              <tr key={n.ip} className="hover:bg-indigo-50 transition-colors">
+              <tr
+                key={n.ip}
+                className="hover:bg-[#ffa20a] hover:text-[#10123e] transition"
+              >
                 <td className="px-4 py-3 font-mono text-sm text-indigo-600 font-medium">
                   {n.ip}
                 </td>

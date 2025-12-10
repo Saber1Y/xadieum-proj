@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, BarChart3, Zap, Shield, Globe } from "lucide-react";
+import { SiSimpleanalytics } from "react-icons/si";
 import {
   FadeInUp,
   ScaleIn,
@@ -9,9 +10,14 @@ import {
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div
+      className="min-h-screen"
+      style={{
+        background: "linear-gradient(135deg, #10123e 60%, #ffa20a 100%)",
+      }}
+    >
       {/* Navigation */}
-      <nav className="fixed w-full top-0 z-50 bg-black/20 backdrop-blur-md border-b border-white/10">
+      <nav className="fixed w-full top-0 z-50  border-b border-white/10">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="text-white font-bold text-xl">Xandeum</span>
@@ -37,7 +43,7 @@ export default function LandingPage() {
             </a>
             <Link
               href="/dashboard"
-              className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold transition"
+              className="px-6 py-2 bg-[#ffa20a] hover:bg-[#10123e] text-[#10123e] hover:text-[#ffa20a] rounded-lg font-semibold transition border-2 border-[#10123e]"
             >
               Dashboard
             </Link>
@@ -45,7 +51,7 @@ export default function LandingPage() {
           <div className="md:hidden">
             <Link
               href="/dashboard"
-              className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-semibold"
+              className="px-4 py-2 bg-[#ffa20a] text-[#10123e] rounded-lg text-sm font-semibold border-2 border-[#10123e]"
             >
               Dashboard
             </Link>
@@ -67,7 +73,7 @@ export default function LandingPage() {
           <FadeInUp delay={0.2}>
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
               Monitor Your{" "}
-              <span className="bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
+              <span className="bg-[#ffa20a] bg-clip-text text-transparent">
                 pNodes
               </span>{" "}
               in Real-Time
@@ -86,7 +92,7 @@ export default function LandingPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
               <Link
                 href="/dashboard"
-                className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition transform hover:scale-105"
+                className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-[#ffa20a]  text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition transform hover:scale-105"
               >
                 Launch Dashboard <ArrowRight size={20} />
               </Link>
@@ -119,7 +125,7 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 cursor-pointer">
             {[
               {
-                icon: <BarChart3 size={32} />,
+                icon: <SiSimpleanalytics size={32} />,
                 title: "Real-Time Analytics",
                 description:
                   "Live dashboard with up-to-date metrics on node performance, storage usage, and network health.",
@@ -146,7 +152,7 @@ export default function LandingPage() {
               <StaggerItem key={i}>
                 <ScaleIn delay={i * 0.1}>
                   <div className="p-8 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-indigo-500/50 transition group">
-                    <div className="text-indigo-400 mb-4 group-hover:text-indigo-300 transition">
+                    <div className="text-[#ffa20a] mb-4 group-hover:text-indigo-300 transition">
                       {feature.icon}
                     </div>
                     <h3 className="text-xl font-semibold text-white mb-3">
@@ -174,7 +180,7 @@ export default function LandingPage() {
                 ].map((stat, i) => (
                   <StaggerItem key={i}>
                     <div className="text-center">
-                      <div className="text-5xl font-bold bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent mb-2">
+                      <div className="text-5xl font-bold bg-[#ffa20a] bg-clip-text text-transparent mb-2">
                         {stat.number}
                       </div>
                       <div className="text-gray-300 text-lg">{stat.label}</div>
@@ -243,7 +249,7 @@ export default function LandingPage() {
             <FadeInUp delay={0.4}>
               <Link
                 href="/dashboard"
-                className="inline-block px-8 py-4 bg-white text-indigo-600 hover:bg-gray-100 rounded-lg font-semibold transition transform hover:scale-105"
+                className="inline-block px-8 py-4 bg-[#ffa20a] text-indigo-600 hover:bg-gray-100 rounded-lg font-semibold transition transform hover:scale-105"
               >
                 Go to Dashboard <ArrowRight className="inline ml-2" size={20} />
               </Link>

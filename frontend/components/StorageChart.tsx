@@ -41,7 +41,9 @@ export default function StorageChart({ nodes }: Props) {
       {
         label: "Storage (bytes)",
         data: [totalUsed],
-        backgroundColor: ["#4f46e5"],
+        backgroundColor: ["#ffa20a"],
+        borderColor: ["#10123e"],
+        borderWidth: 2,
       },
     ],
   };
@@ -52,9 +54,9 @@ export default function StorageChart({ nodes }: Props) {
       <div className="w-full max-w-xl">
         <Bar data={data} />
       </div>
-      <div className="mt-4 text-sm text-gray-700">
+      <div className="mt-4 text-sm text-[#10123e]">
         Total Used:{" "}
-        <span className="font-semibold text-indigo-600">
+        <span className="font-semibold text-[#ffa20a]">
           {(totalUsed / 1_000_000_000).toFixed(2)} GB
         </span>
       </div>
